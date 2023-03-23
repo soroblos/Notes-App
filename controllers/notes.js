@@ -49,7 +49,7 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
     try {
-        res.json(await People.findByIdAndRemove(req.params.id));
+        res.json(await Notes.findByIdAndRemove(req.params.id));
     } catch (error) {
         res.status(400).json(error);
     }
