@@ -1,0 +1,58 @@
+const express = require('express')
+const router = express.Router()
+const notes = require('../seeddata/data.js')
+const Notes = require('../models/notes.js')
+
+
+router.get("/", async (req, res) => {
+    try {
+        res.json(await Notes.find({}));
+    } catch (error) {
+        res.status(400).json(error);
+    }
+    console.log(req.body)
+})
+
+router.post("/", async (req, res) => {
+    try {
+        res.json(await Notes.create(req.body));
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+router.get("/:id", async (req, res) => {
+    try {
+        res.json(await Notes.findById(req.params.id))
+    } catch {
+        res.status(400).json(error)
+    }
+})
+
+router.get("/seed", async (req, res) => {
+    try {
+        res.json(await Notes.create(notes))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
+router.put("/:id", async (req, res) => {
+    try {
+        res.json(
+            await Notes.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        );
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+router.delete("/:id", async (req, res) => {
+    try {
+        res.json(await People.findByIdAndRemove(req.params.id));
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+module.exports = router
