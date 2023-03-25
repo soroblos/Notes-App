@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const notesSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    img: String,
+    image: String,
     description: String,
     username: String,
 

@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const notes = require('../seeddata/data.js')
 const Notes = require('../models/notes.js')
 
 
@@ -24,14 +23,6 @@ router.post("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         res.json(await Notes.findById(req.params.id))
-    } catch {
-        res.status(400).json(error)
-    }
-})
-
-router.get("/seed", async (req, res) => {
-    try {
-        res.json(await Notes.create(notes))
     } catch (error) {
         res.status(400).json(error)
     }
